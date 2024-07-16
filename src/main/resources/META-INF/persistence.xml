@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="studiorentspring">
+        <properties>
+            <property name = "hibernate.connection.driver_class" value =
+                    "org.postgresql.Driver"/>
+            <property name = "hibernate.connection.url" value =
+                    "jdbc:postgresql://localhost:5435/studiorentspring" />
+            <property name = "hibernate.connection.username" value = "postgres"/>
+            <property name = "hibernate.connection.password" value = "0" />
+            <property name = "hibernate.hbm2ddl.auto" value = "create" />
+            <property name = "hibernate.show_sql" value = "true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
