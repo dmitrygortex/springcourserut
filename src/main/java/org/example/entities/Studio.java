@@ -11,6 +11,7 @@ public class Studio extends BaseEntity{
     private String name;
     private String description;
     private int rentFee;
+    private String adress;
 
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +34,11 @@ public class Studio extends BaseEntity{
         return rentFee;
     }
 
+    @Column(name = "adress")
+    public String getAdress() {
+        return adress;
+    }
+
 //    public void setStudioID(int studioID) {
 //        this.studioID = studioID;
 //    }
@@ -47,5 +53,9 @@ public class Studio extends BaseEntity{
 
     public void setRentFee(int rentFee) {
         this.rentFee = rentFee;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 }

@@ -42,7 +42,7 @@ public class Equipment extends BaseEntity{
     }
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "studioID", referencedColumnName = "studioID")
+    @JoinColumn(name = "studioId", referencedColumnName = "id")
     public Studio getStudio() {
         return studio;
     }
@@ -59,15 +59,15 @@ public class Equipment extends BaseEntity{
         this.type = type;
     }
 
-    public void setBrand(String brand) {
+    private void setBrand(String brand) {
         this.brand = brand;
     }
 
-    public void setModel(String model) {
+    private void setModel(String model) {
         this.model = model;
     }
 
-    public void setStudio(Studio studio) {
+    private void setStudio(Studio studio) {
         this.studio = studio;
     }
 }

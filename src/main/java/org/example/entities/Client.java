@@ -21,7 +21,6 @@ public class Client extends BaseEntity{
 //    }
 
     @Column(name = "firstName")
-
     public String getFirstName() {
         return firstName;
     }

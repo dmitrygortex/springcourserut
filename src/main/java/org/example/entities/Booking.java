@@ -41,19 +41,19 @@ public class Booking extends BaseEntity{
     }
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "studioID", referencedColumnName = "studioID")
+    @JoinColumn(name = "studioId", referencedColumnName = "id")
     public Studio getStudio() {
         return studio;
     }
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "clientID", referencedColumnName = "clientID")
+    @JoinColumn(name = "clientId", referencedColumnName = "id")
     public Client getClient() {
         return client;
     }
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "staffID", referencedColumnName = "staffID")
+    @JoinColumn(name = "staffId", referencedColumnName = "id")
     public Staff getStaff() {
         return staff;
     }
