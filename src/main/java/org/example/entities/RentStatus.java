@@ -1,7 +1,8 @@
-package entities;
+package org.example.entities;
 
 public enum RentStatus {
     UNRESERVED,
     RESERVED,
-    RENTED
+    RENTED,
+    CANCELLED
 }

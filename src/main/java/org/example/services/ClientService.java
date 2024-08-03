@@ -1,2 +1,11 @@
-package org.example.services;public class ClientService {
+package org.example.services;
+
+
+import org.springframework.stereotype.Service;
+
+
+public interface ClientService {
+
+
+
 }

@@ -1,7 +1,8 @@
-package entities;
+package org.example.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -9,21 +10,27 @@ import java.util.Date;
 @Table(name = "Booking")
 public class Booking extends BaseEntity{
 
-    //private int bookingID;
     private RentStatus status;
-    private Date startBookingDate;
-    private Date endBookingDate;
+    private LocalDateTime startBookingDate;
+    private LocalDateTime endBookingDate;
     private Studio studio;
     private Client client;
     private Staff staff;
 
+    // Поменять Бд добавить к каждому бронированию несколько услуг ДОБАВИТЬ как услуга многие ко многим
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "bookingID")
-//    public int getBookingID(){
-//        return bookingID;
-//    }
+    // Редактирование бронирования (продление) чтобы можно было забронировать больше
+    // чем сейчас на другое время но тогда была бы равносильное бронирование.
+
+
+
+    // Добавить время бронирования чтобы можно было исключить возможность брони
+    // и не оплаты с заменой статуса на RESERVED
+    // и пользователь если студия не оплачивалась больше 15 мин
+    // смог все равно забронировать пробовать
+    // НЕ ДЕЛАТЬ
+
+    //private LocalDateTime updatedAt;
 
     @Column(name = "status")
     public RentStatus getStatus(){
@@ -31,46 +38,44 @@ public class Booking extends BaseEntity{
     }
 
     @Column(name = "startBookingDate")
-    public Date getStartBookingDate(){
+    public LocalDateTime getStartBookingDate(){
         return startBookingDate;
     }
 
     @Column(name = "endBookingDate")
-    public Date getEndBookingDate(){
+    public LocalDateTime getEndBookingDate(){
         return endBookingDate;
     }
 
+    // cascade = CascadeType.ALL
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "studioId", referencedColumnName = "id")
+    @JoinColumn(name = "studio_id", referencedColumnName = "id")
     public Studio getStudio() {
         return studio;
     }
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "clientId", referencedColumnName = "id")
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
     public Client getClient() {
         return client;
     }
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "staffId", referencedColumnName = "id")
+    @JoinColumn(name = "staff_id", referencedColumnName = "id")
     public Staff getStaff() {
         return staff;
     }
 
-//    public void setBookingID(int bookingID) {
-//        this.bookingID = bookingID;
-//    }
 
     public void setStatus(RentStatus status) {
         this.status = status;
     }
 
-    public void setStartBookingDate(Date startBookingDate) {
+    public void setStartBookingDate(LocalDateTime startBookingDate) {
         this.startBookingDate = startBookingDate;
     }
 
-    public void setEndBookingDate(Date endBookingDate) {
+    public void setEndBookingDate(LocalDateTime endBookingDate) {
         this.endBookingDate = endBookingDate;
     }
 

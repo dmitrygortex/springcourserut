@@ -1,4 +1,4 @@
-package entities;
+package org.example.entities;
 
 import jakarta.persistence.*;
 
@@ -7,18 +7,13 @@ import jakarta.persistence.*;
 @Table(name = "Client")
 public class Client extends BaseEntity{
 
-//    private int clientID;
+
     private String firstName;
     private String lastName;
     private String hashOfPassword;
     private String phoneNumber;
     private String email;
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    public int getClientID() {
-//        return clientID;
-//    }
 
     @Column(name = "firstName")
     public String getFirstName() {
@@ -42,10 +37,6 @@ public class Client extends BaseEntity{
     public String getHashOfPassword() {
         return hashOfPassword;
     }
-
-//    public void setClientID(int clientID) {
-//        this.clientID = clientID;
-//    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;

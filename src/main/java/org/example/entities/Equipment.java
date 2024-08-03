@@ -1,4 +1,4 @@
-package entities;
+package org.example.entities;
 
 import jakarta.persistence.*;
 
@@ -7,24 +7,11 @@ import jakarta.persistence.*;
 @Table(name = "Equipment")
 public class Equipment extends BaseEntity{
 
-//    private int equipmentID;
-    private String name;
     private String type;
     private String brand;
     private String model;
     private Studio studio;
 
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    public int getEquipmentID(){
-//        return equipmentID;
-//    }
-
-    @Column(name = "name")
-    public String getName(){
-        return name;
-    }
 
     @Column(name = "type")
     public String getType(){
@@ -42,18 +29,11 @@ public class Equipment extends BaseEntity{
     }
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "studioId", referencedColumnName = "id")
+    @JoinColumn(name = "studio_id", referencedColumnName = "id")
     public Studio getStudio() {
         return studio;
     }
 
-//    private void setEquipmentID(int equipmentID) {
-//        this.equipmentID = equipmentID;
-//    }
-
-    private void setName(String name) {
-        this.name = name;
-    }
 
     private void setType(String type) {
         this.type = type;

@@ -1,4 +1,4 @@
-package entities;
+package org.example.entities;
 
 import jakarta.persistence.*;
 
@@ -7,18 +7,13 @@ import jakarta.persistence.*;
 @Table(name = "Staff")
 public class Staff extends BaseEntity{
 
-//    private int staffID;
+
     private String firstName;
     private String lastName;
     private String role;
-    private String experience;
+    private int experience;
     private int pricePerHour;
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    public int getStaffID() {
-//        return staffID;
-//    }
 
     @Column(name = "firstName")
     public String getFirstName() {
@@ -36,7 +31,7 @@ public class Staff extends BaseEntity{
     }
 
     @Column(name = "experience")
-    public String getExperience() {
+    public int getExperience() {
         return experience;
     }
 
@@ -44,10 +39,6 @@ public class Staff extends BaseEntity{
     public String getRole() {
         return role;
     }
-
-//    public void setStaffID(int staffID) {
-//        this.staffID = staffID;
-//    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -61,7 +52,7 @@ public class Staff extends BaseEntity{
         this.role = role;
     }
 
-    public void setExperience(String experience) {
+    public void setExperience(int experience) {
         this.experience = experience;
     }
 

@@ -1,4 +1,4 @@
-package entities;
+package org.example.entities;
 
 import jakarta.persistence.*;
 
@@ -18,3 +18,6 @@ public abstract class BaseEntity {
         this.id = id;
     }
 }
+
+
+

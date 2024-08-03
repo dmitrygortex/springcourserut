@@ -1,2 +1,4 @@
-package org.example.services;public class StudioService {
+package org.example.services;
+
+public interface StudioService {
 }

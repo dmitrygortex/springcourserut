@@ -1,2 +1,4 @@
-package org.example.dto;public class StudioDto {
+package org.example.dto;
+
+public class StudioDto {
 }
