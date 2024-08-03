@@ -20,8 +20,8 @@
 
 ## NEED TO DO:
 
-- [ ] Добавить таблицу услуг "Facility" с атрибутами id, name, description, price
-- [ ] Добавить таблицу бронирования услуг "BookFacility" с атрибутами id, serviceID, bookingID, quantity
+- [x] Добавить таблицу услуг "Facility" с атрибутами id, name, description, price
+- [x] Добавить таблицу бронирования услуг "BookFacility" с атрибутами id, serviceID, bookingID, quantity
 - [ ] Добавить fired атрибут в Staff таблицу и изменить поле с опытом работы
 - [ ] Добавить по все таблицы атрибут is_deleted + изменить модели
 - [ ] Убрать JPA репозитории и реализовать их правильно
