@@ -1,11 +1,14 @@
 package org.example.entities;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "Facility")
 public class Facility extends BaseEntity {
     private String name;
     private String description;
     private int price;
+    FacilityBooking facilityBooking;
 
     @Column(name = "name")
     public String getName() {return name; }
@@ -18,6 +21,10 @@ public class Facility extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setFacilityBooking(FacilityBooking facilityBooking) {
+        this.facilityBooking = facilityBooking;
     }
 
     public void setDescription(String description) {

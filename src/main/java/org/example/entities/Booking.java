@@ -66,7 +66,6 @@ public class Booking extends BaseEntity{
         return staff;
     }
 
-
     public void setStatus(RentStatus status) {
         this.status = status;
     }
@@ -90,4 +89,5 @@ public class Booking extends BaseEntity{
     public void setStaff(Staff staff) {
         this.staff = staff;
     }
+
 }

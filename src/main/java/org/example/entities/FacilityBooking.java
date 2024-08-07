@@ -1,37 +1,45 @@
 package org.example.entities;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 
+import java.awt.print.Book;
+
+@Entity
+@Table(name = "FacilityBooking")
 public class FacilityBooking extends BaseEntity {
 
-    private String facilityID;
-    private String bookingID;
+    private Facility facility;
+    private Booking booking;
     private int quantity;
 
-    @Column(name = "facilityID")
-    public String getFacilityID() {
-        return facilityID;
-    }
-
-    @Column(name = "bookingID")
-    public String getBookingID() {
-        return bookingID;
-    }
 
     @Column(name = "quantity")
     public int getQuantity() {
         return quantity;
     }
 
-    public void setFacilityID(String facilityID) {
-        this.facilityID = facilityID;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "facility_id", referencedColumnName = "id")
+    public Facility getFacility() {
+        return facility;
     }
 
-    public void setBookingID(String bookingID) {
-        this.bookingID = bookingID;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "booking_id", referencedColumnName = "id")
+    public Booking getBooking() {
+        return booking;
     }
+
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public void setFacility(Facility facility) {
+        this.facility = facility;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 }
