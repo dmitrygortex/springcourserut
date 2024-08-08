@@ -2,6 +2,8 @@ package org.example.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "Staff")
@@ -11,7 +13,7 @@ public class Staff extends BaseEntity{
     private String firstName;
     private String lastName;
     private String role;
-    private int experience;
+    private LocalDate experienceStartDate;
     private int pricePerHour;
 
 
@@ -30,9 +32,9 @@ public class Staff extends BaseEntity{
         return pricePerHour;
     }
 
-    @Column(name = "experience")
-    public int getExperience() {
-        return experience;
+    @Column(name = "experienceStartDate")
+    public LocalDate getExperienceStartDate() {
+        return experienceStartDate;
     }
 
     @Column(name = "role")
@@ -52,8 +54,8 @@ public class Staff extends BaseEntity{
         this.role = role;
     }
 
-    public void setExperience(int experience) {
-        this.experience = experience;
+    public void setExperienceStartDate(LocalDate experienceStartDate) {
+        this.experienceStartDate = experienceStartDate;
     }
 
     public void setPricePerHour(int pricePerHour) {
