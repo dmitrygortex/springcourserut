@@ -1,7 +1,7 @@
 package org.example.services.impl;
 
 import org.example.entities.Equipment;
-import org.example.repositories.EquipmentRepository;
+import org.example.deprecated_repositories.EquipmentRepository;
 import org.example.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

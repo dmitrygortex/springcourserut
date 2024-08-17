@@ -1,10 +1,10 @@
 package org.example.services.impl;
 
 import org.example.entities.*;
-import org.example.repositories.BookingRepository;
-import org.example.repositories.ClientRepository;
-import org.example.repositories.StaffRepository;
-import org.example.repositories.StudioRepository;
+import org.example.deprecated_repositories.BookingRepository;
+import org.example.deprecated_repositories.ClientRepository;
+import org.example.deprecated_repositories.StaffRepository;
+import org.example.deprecated_repositories.StudioRepository;
 import org.example.services.BookingDomainService;
 import org.example.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
