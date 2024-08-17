@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface StaffRepository extends JpaRepository<Staff, Integer> {
+public interface StaffRepository{
 
 
 
