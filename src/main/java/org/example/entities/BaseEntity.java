@@ -28,7 +28,6 @@ public abstract class BaseEntity {
         isDeleted = deleted;
     }
 
-    @Transient
     public boolean getIsDeleted() {
         return isDeleted;
     }

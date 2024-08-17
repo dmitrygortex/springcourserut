@@ -21,8 +21,6 @@ public interface BookingRepository {
 
     List<Booking> findBookingsByStudioId(Integer studioId);
 
-    Booking findBookingById();
-
 }
 
 
