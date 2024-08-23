@@ -10,11 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-@Repository
-@Transactional
 public interface StaffRepository{
 
+    List<Staff> findStaffByExperienceRange(Integer minExperience, Integer maxExperience);
 
+    List<Staff> findStaffByRole(String role);
+
+    List<Staff> findStaffByPriceRange(Integer minPrice, Integer maxPrice);
+
+    List<Staff> findStaffByBookingId(Integer bookingId);
+
+    List<Staff> findAllStaff();
 
 }
 

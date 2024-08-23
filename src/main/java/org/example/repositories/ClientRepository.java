@@ -9,8 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Repository
-@Transactional
-public interface ClientRepository extends JpaRepository<Client, Integer> {
 
+public interface ClientRepository {
+    Client findClientByEmail(String email);
+
+    List<Client> findClientsByName(String firstName, String lastName);
+
+    Client findClientByPhoneNumber(String phoneNumber);
+
+    List<Client> findAllClients();
 }

@@ -10,9 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-@Repository
-@Transactional
-public interface EquipmentRepository extends JpaRepository<Equipment, Integer> {
+public interface EquipmentRepository {
 
+    List<Equipment> findEquipmentByType(String type);
+
+    List<Equipment> findEquipmentByStudioId(Integer studioId);
+
+    List<Equipment> findEquipmentByBrand(String brand);
+
+    List<Equipment> findAllEquipment();
 
 }
+

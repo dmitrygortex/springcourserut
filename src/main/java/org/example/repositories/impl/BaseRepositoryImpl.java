@@ -45,20 +45,5 @@ public class BaseRepositoryImpl<T extends BaseEntity> implements BaseRepository<
         }
     }
 
-//    // Приватные методы для более сложных операций
-//    protected T findSingleResult(String query, Object... params) {
-//        var q = entityManager.createQuery(query, entityClass);
-//        for (int i = 0; i < params.length; i++) {
-//            q.setParameter(i + 1, params[i]);
-//        }
-//        return q.getSingleResult();
-//    }
-//
-//    protected List<T> findResultList(String query, Object... params) {
-//        var q = entityManager.createQuery(query, entityClass);
-//        for (int i = 0; i < params.length; i++) {
-//            q.setParameter(i + 1, params[i]);
-//        }
-//        return q.getResultList();
-//    }
+
 }

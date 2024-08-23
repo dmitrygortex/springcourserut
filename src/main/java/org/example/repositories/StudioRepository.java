@@ -10,8 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-@Repository
-@Transactional
-public interface StudioRepository extends JpaRepository<Studio, Integer> {
-   
+
+public interface StudioRepository {
+
+    List<Studio> findStudiosByName(String name);
+
+    List<Studio> findStudiosByAddress( String address);
+
+    List<Studio> findStudiosByRentFee( Integer rentFee);
+
+    List<Studio> findAllStudios();
 }
