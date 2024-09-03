@@ -1,10 +1,14 @@
 package org.example.services.impl;
 
 import org.example.entities.*;
-import org.example.deprecated_repositories.BookingRepository;
-import org.example.deprecated_repositories.ClientRepository;
-import org.example.deprecated_repositories.StaffRepository;
-import org.example.deprecated_repositories.StudioRepository;
+import org.example.repositories.BookingRepository;
+import org.example.repositories.ClientRepository;
+import org.example.repositories.StaffRepository;
+import org.example.repositories.StudioRepository;
+import org.example.repositories.impl.BookingRepositoryImpl;
+import org.example.repositories.impl.ClientRepositoryImpl;
+import org.example.repositories.impl.StaffRepositoryImpl;
+import org.example.repositories.impl.StudioRepositoryImpl;
 import org.example.services.BookingDomainService;
 import org.example.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +24,16 @@ import java.util.Optional;
 public class BookingDomainServiceImpl implements BookingDomainService {
 
     @Autowired
-    private BookingRepository bookingRepository;
+    private BookingRepositoryImpl bookingRepository;
 
     @Autowired
-    private StudioRepository studioRepository;
+    private StudioRepositoryImpl studioRepository;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientRepositoryImpl clientRepository;
 
     @Autowired
-    private StaffRepository staffRepository;
+    private StaffRepositoryImpl staffRepository;
 
 
     @Override

@@ -11,8 +11,6 @@ public interface BookingService {
 
     boolean updateBookingDates(Integer bookingId, LocalDateTime newStartDate, LocalDateTime newEndDate);
 
-    List<Booking> getAllBookings();
-
     List<Booking> getClientBookings(Integer clientId);
 
     List<Booking> getStudioBookings(Integer studioId);

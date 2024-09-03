@@ -1,6 +1,7 @@
 package org.example.repositories;
 
 import org.example.entities.Booking;
+import org.example.entities.Equipment;
 import org.example.entities.Studio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,6 +22,7 @@ public interface BookingRepository {
 
     List<Booking> findBookingsByStudioId(Integer studioId);
 
+    Booking findBookingById(Integer id);
 }
 
 

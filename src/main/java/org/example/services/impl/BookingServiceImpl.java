@@ -1,8 +1,10 @@
 package org.example.services.impl;
 
 import org.example.entities.Booking;
-import org.example.deprecated_repositories.BookingRepository;
+import org.example.repositories.BookingRepository;
 import org.example.entities.RentStatus;
+import org.example.repositories.impl.BookingRepositoryImpl;
+import org.example.repositories.impl.FacilityBookingRepositoryImpl;
 import org.example.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ import java.util.Optional;
 public class BookingServiceImpl implements BookingService {
 
     @Autowired
-    private BookingRepository bookingRepository;
+    private BookingRepositoryImpl bookingRepository;
 
     @Override
     @Transactional
@@ -43,11 +45,6 @@ public class BookingServiceImpl implements BookingService {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public List<Booking> getAllBookings() {
-        return bookingRepository.findAll();
     }
 
     @Override

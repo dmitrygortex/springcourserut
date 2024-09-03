@@ -79,4 +79,10 @@ public class BookingRepositoryImpl extends BaseRepositoryImpl<Booking> implement
         return query.getResultList();
     }
 
+    public Booking findBookingById(Integer id){
+        String queryStr = "SELECT b FROM Booking b WHERE b.id = :id AND b.isDeleted = false";
+        TypedQuery<Booking> query = entityManager.createQuery(queryStr, Booking.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
 }

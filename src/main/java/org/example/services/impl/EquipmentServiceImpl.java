@@ -1,7 +1,8 @@
 package org.example.services.impl;
 
 import org.example.entities.Equipment;
-import org.example.deprecated_repositories.EquipmentRepository;
+import org.example.repositories.EquipmentRepository;
+import org.example.repositories.impl.EquipmentRepositoryImpl;
 import org.example.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.Optional;
 public class EquipmentServiceImpl implements EquipmentService {
 
     @Autowired
-    private EquipmentRepository equipmentRepository;
+    private EquipmentRepositoryImpl equipmentRepository;
 
     @Override
     public boolean addEquipment(Equipment equipment) {
@@ -23,7 +24,7 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public boolean removeEquipment(int equipmentId) {
-        equipmentRepository.deleteById(equipmentId);
+        equipmentRepository.softDeleteById(equipmentId);
         return true;
     }
 
@@ -38,17 +39,13 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public boolean updateEquipment(Equipment equipment) {
-        if (equipmentRepository.existsById(equipment.getId())) {
-            equipmentRepository.save(equipment);
-            return true;
-        } else {
-            return false;
-        }
+        equipmentRepository.save(equipment);
+        return true;
     }
 
     @Override
     public List<Equipment> getAllEquipment() {
-        return equipmentRepository.findAll();
+        return equipmentRepository.findAllEquipment();
     }
 
     @Override

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public abstract class BaseEntity {
 
     protected int id;
-    protected boolean isDeleted = false;
+    protected boolean isDeleted;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
