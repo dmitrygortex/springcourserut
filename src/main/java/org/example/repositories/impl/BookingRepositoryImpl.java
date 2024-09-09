@@ -8,6 +8,7 @@ import org.example.entities.BaseEntity;
 import org.example.entities.Studio;
 import org.example.repositories.BaseRepository;
 import org.example.repositories.BookingRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

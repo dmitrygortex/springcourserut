@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public abstract class BaseEntity {
 
     protected int id;
-    protected boolean isDeleted;
+    protected boolean deleted;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,15 +21,11 @@ public abstract class BaseEntity {
 
     @Column(name = "is_deleted", columnDefinition = "boolean default false")
     public boolean isDeleted() {
-        return isDeleted;
+        return deleted;
     }
 
     public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
-    }
-
-    public boolean getIsDeleted() {
-        return isDeleted;
+        this.deleted = deleted;
     }
 }
 
