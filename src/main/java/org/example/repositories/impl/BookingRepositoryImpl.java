@@ -22,8 +22,8 @@ public class BookingRepositoryImpl extends BaseRepositoryImpl<Booking> implement
     @PersistenceContext
     private EntityManager entityManager;
 
-    protected BookingRepositoryImpl(Class<Booking> entityClass) {
-        super(entityClass);
+    protected BookingRepositoryImpl() {
+        super(Booking.class);
     }
 
 

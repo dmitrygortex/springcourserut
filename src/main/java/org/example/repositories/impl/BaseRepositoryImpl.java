@@ -4,10 +4,12 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.example.entities.BaseEntity;
 import org.example.repositories.BaseRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.List;
 import java.util.Optional;
 
+@NoRepositoryBean
 public class BaseRepositoryImpl<T extends BaseEntity> implements BaseRepository<T> {
 
     @PersistenceContext
