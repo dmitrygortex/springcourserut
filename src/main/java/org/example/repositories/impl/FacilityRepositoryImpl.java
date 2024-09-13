@@ -17,7 +17,7 @@ public class FacilityRepositoryImpl extends BaseRepositoryImpl<Facility> impleme
     @Override
     public List<Facility> findFacilitiesByName(String name) {
         TypedQuery<Facility> query = entityManager.createQuery(
-                "SELECT f FROM Facility f WHERE f.name = :name AND f.isDeleted = false",
+                "SELECT f FROM Facility f WHERE f.name = :name AND f.deleted = false",
                 Facility.class);
         query.setParameter("name", name);
         return query.getResultList();
@@ -26,7 +26,7 @@ public class FacilityRepositoryImpl extends BaseRepositoryImpl<Facility> impleme
     @Override
     public List<Facility> findFacilitiesByPriceRange(Integer minPrice, Integer maxPrice) {
         TypedQuery<Facility> query = entityManager.createQuery(
-                "SELECT f FROM Facility f WHERE f.price BETWEEN :minPrice AND :maxPrice AND f.isDeleted = false",
+                "SELECT f FROM Facility f WHERE f.price BETWEEN :minPrice AND :maxPrice AND f.deleted = false",
                 Facility.class);
         query.setParameter("minPrice", minPrice);
         query.setParameter("maxPrice", maxPrice);
@@ -36,7 +36,7 @@ public class FacilityRepositoryImpl extends BaseRepositoryImpl<Facility> impleme
     @Override
     public List<Facility> findAllFacilities() {
         TypedQuery<Facility> query = entityManager.createQuery(
-                "SELECT f FROM Facility f WHERE f.isDeleted = false",
+                "SELECT f FROM Facility f WHERE f.deleted = false",
                 Facility.class);
         return query.getResultList();
     }

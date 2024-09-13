@@ -2,16 +2,15 @@ package org.example.dto;
 
 import org.example.entities.Studio;
 
-public class EquipmentDto {
+public class EquipmentCreateDto {
     private int id;
     private String type;
     private String brand;
     private String model;
     private StudioDto studioDto;
 
-    public EquipmentDto(){}
-
-    public EquipmentDto(int id, String type, String brand, String model, StudioDto studioDto) {
+    public EquipmentCreateDto(){}
+    public EquipmentCreateDto(int id, String type, String brand, String model, StudioDto studioDto) {
         this.id = id;
         this.type = type;
         this.brand = brand;

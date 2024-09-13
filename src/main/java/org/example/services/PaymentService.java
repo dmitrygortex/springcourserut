@@ -1,12 +1,13 @@
 package org.example.services;
 
+import org.example.dto.BookingDto;
 import org.example.entities.Booking;
 
 public interface PaymentService {
 
-    boolean processPayment(Booking booking, String paymentDetails);
+    boolean processPayment(BookingDto booking, String paymentDetails);
 
-    boolean initiatePayment(Booking booking, String paymentDetails);
+    boolean initiatePayment(BookingDto booking, String paymentDetails);
 
-    boolean confirmPayment(Booking booking, String paymentConfirmationDetails);
+    boolean confirmPayment(BookingDto booking, String paymentConfirmationDetails);
 }

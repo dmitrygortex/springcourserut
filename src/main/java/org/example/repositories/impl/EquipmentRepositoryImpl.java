@@ -16,21 +16,21 @@ public class EquipmentRepositoryImpl extends BaseRepositoryImpl<Equipment> imple
 
     @Override
     public List<Equipment> findEquipmentByType(String type) {
-        TypedQuery<Equipment> query = entityManager.createQuery("SELECT e FROM Equipment e WHERE e.type = :type AND e.isDeleted = false", Equipment.class);
+        TypedQuery<Equipment> query = entityManager.createQuery("SELECT e FROM Equipment e WHERE e.type = :type AND e.deleted = false", Equipment.class);
         query.setParameter("type", type);
         return query.getResultList();
     }
 
     @Override
     public List<Equipment> findEquipmentByStudioId(Integer studioId) {
-        TypedQuery<Equipment> query = entityManager.createQuery("SELECT e FROM Equipment e WHERE e.studio.id = :studioId AND e.isDeleted = false", Equipment.class);
+        TypedQuery<Equipment> query = entityManager.createQuery("SELECT e FROM Equipment e WHERE e.studio.id = :studioId AND e.deleted = false", Equipment.class);
         query.setParameter("studioId", studioId);
         return query.getResultList();
     }
 
     @Override
     public List<Equipment> findEquipmentByBrand(String brand) {
-        TypedQuery<Equipment> query = entityManager.createQuery("SELECT e FROM Equipment e WHERE e.brand = :brand AND e.isDeleted = false", Equipment.class);
+        TypedQuery<Equipment> query = entityManager.createQuery("SELECT e FROM Equipment e WHERE e.brand = :brand AND e.deleted = false", Equipment.class);
         query.setParameter("brand", brand);
         return query.getResultList();
     }

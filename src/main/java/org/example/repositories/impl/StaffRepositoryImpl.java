@@ -17,7 +17,7 @@ public class StaffRepositoryImpl extends BaseRepositoryImpl<Staff> implements St
     @Override
     public List<Staff> findStaffByExperienceRange(Integer minExperience, Integer maxExperience) {
         TypedQuery<Staff> query = entityManager.createQuery(
-                "SELECT s FROM Staff s WHERE YEAR(CURRENT_DATE) - YEAR(s.experienceStartDate) BETWEEN :minExperience AND :maxExperience AND s.isDeleted = false",
+                "SELECT s FROM Staff s WHERE YEAR(CURRENT_DATE) - YEAR(s.experienceStartDate) BETWEEN :minExperience AND :maxExperience AND s.deleted = false",
                 Staff.class);
         query.setParameter("minExperience", minExperience);
         query.setParameter("maxExperience", maxExperience);
@@ -27,7 +27,7 @@ public class StaffRepositoryImpl extends BaseRepositoryImpl<Staff> implements St
     @Override
     public List<Staff> findStaffByRole(String role) {
         TypedQuery<Staff> query = entityManager.createQuery(
-                "SELECT s FROM Staff s WHERE s.role = :role AND s.isDeleted = false",
+                "SELECT s FROM Staff s WHERE s.role = :role AND s.deleted = false",
                 Staff.class);
         query.setParameter("role", role);
         return query.getResultList();
@@ -36,7 +36,7 @@ public class StaffRepositoryImpl extends BaseRepositoryImpl<Staff> implements St
     @Override
     public List<Staff> findStaffByPriceRange(Integer minPrice, Integer maxPrice) {
         TypedQuery<Staff> query = entityManager.createQuery(
-                "SELECT s FROM Staff s WHERE s.pricePerHour BETWEEN :minPrice AND :maxPrice AND s.isDeleted = false",
+                "SELECT s FROM Staff s WHERE s.pricePerHour BETWEEN :minPrice AND :maxPrice AND s.deleted = false",
                 Staff.class);
         query.setParameter("minPrice", minPrice);
         query.setParameter("maxPrice", maxPrice);
@@ -46,7 +46,7 @@ public class StaffRepositoryImpl extends BaseRepositoryImpl<Staff> implements St
     @Override
     public List<Staff> findStaffByBookingId(Integer bookingId) {
         TypedQuery<Staff> query = entityManager.createQuery(
-                "SELECT s FROM Staff s JOIN Booking b ON s.id = b.staff.id WHERE b.id = :bookingId AND s.isDeleted = false",
+                "SELECT s FROM Staff s JOIN Booking b ON s.id = b.staff.id WHERE b.id = :bookingId AND s.deleted = false",
                 Staff.class);
         query.setParameter("bookingId", bookingId);
         return query.getResultList();
@@ -55,7 +55,7 @@ public class StaffRepositoryImpl extends BaseRepositoryImpl<Staff> implements St
     @Override
     public List<Staff> findAllStaff() {
         TypedQuery<Staff> query = entityManager.createQuery(
-                "SELECT s FROM Staff s WHERE s.isDeleted = false",
+                "SELECT s FROM Staff s WHERE s.deleted = false",
                 Staff.class);
         return query.getResultList();
     }

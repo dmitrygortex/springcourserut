@@ -1,24 +1,30 @@
 package org.example.services.impl;
 
+import org.example.dto.EquipmentDto;
 import org.example.entities.Equipment;
 import org.example.repositories.EquipmentRepository;
 import org.example.repositories.impl.EquipmentRepositoryImpl;
 import org.example.services.EquipmentService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EquipmentServiceImpl implements EquipmentService {
 
     @Autowired
     private EquipmentRepositoryImpl equipmentRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
-    public boolean addEquipment(Equipment equipment) {
-        equipmentRepository.save(equipment);
+    public boolean addEquipment(EquipmentDto equipmentDto) {
+        equipmentRepository.save(modelMapper.map(equipmentDto, Equipment.class));
         return true;
     }
 
@@ -44,8 +50,8 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     @Override
-    public List<Equipment> getAllEquipment() {
-        return equipmentRepository.findAllEquipment();
+    public List<EquipmentDto> getAllEquipment() {
+        return equipmentRepository.findAllEquipment().stream().map(equipment -> modelMapper.map(equipment, EquipmentDto.class)).collect(Collectors.toList());
     }
 
     @Override

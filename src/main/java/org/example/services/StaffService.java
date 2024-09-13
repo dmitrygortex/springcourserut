@@ -1,10 +1,13 @@
 package org.example.services;
 
+import org.example.dto.StaffDto;
 import org.example.entities.Staff;
+
+import java.util.List;
 
 public interface StaffService {
 
-    void addStaff(Staff staff);
+    boolean addStaff(StaffDto staff);
 
     void removeStaff(Integer staffId);
 
@@ -12,7 +15,7 @@ public interface StaffService {
 
     void updateStaff(Staff staff);
 
-    Iterable<Staff> getAllStaff();
+    List<StaffDto> getAllStaff();
 
     Staff findStaffByPricePerHourRange(int minPrice, int maxPrice);
 }

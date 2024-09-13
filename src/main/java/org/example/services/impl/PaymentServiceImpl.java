@@ -1,8 +1,10 @@
 package org.example.services.impl;
 
+import org.example.dto.BookingDto;
 import org.example.entities.Booking;
 import org.example.services.PaymentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -12,7 +14,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     // Добавить подключение к бд через PaymentRepository
     @Override
-    public boolean processPayment(Booking booking, String paymentDetails) {
+    public boolean processPayment(BookingDto booking, String paymentDetails) {
         boolean paymentInitiated = initiatePayment(booking, paymentDetails);
         if (!paymentInitiated) {
             return false;
@@ -22,12 +24,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public boolean initiatePayment(Booking booking, String paymentDetails) {
+    public boolean initiatePayment(BookingDto booking, String paymentDetails) {
         return true;
     }
 
     @Override
-    public boolean confirmPayment(Booking booking, String paymentConfirmationDetails) {
+    public boolean confirmPayment(BookingDto booking, String paymentConfirmationDetails) {
         return true;
     }
 }

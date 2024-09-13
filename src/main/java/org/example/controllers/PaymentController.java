@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import org.example.dto.BookingDto;
 import org.example.entities.Booking;
 import org.example.services.BookingService;
 import org.example.services.PaymentService;
@@ -22,14 +23,14 @@ public class PaymentController {
             @RequestParam int bookingId,
             @RequestParam String paymentDetails) {
 
-        Booking booking = bookingService.getBookingById(bookingId);
+        BookingDto booking = bookingService.getBookingById(bookingId);
         if (booking != null) {
             boolean initiateSuccess = paymentService.initiatePayment(booking, paymentDetails);
             if (initiateSuccess) {
-                return ResponseEntity.ok("Payment initiated successfully.");
+                return ResponseEntity.ok("INITIATED");
             }
         }
-        return ResponseEntity.status(409).body("Failed to initiate payment.");
+        return ResponseEntity.status(500).body("FAILED");
     }
 
     @PostMapping("/confirm")
@@ -37,13 +38,13 @@ public class PaymentController {
             @RequestParam int bookingId,
             @RequestParam String paymentConfirmationDetails) {
 
-        Booking booking = bookingService.getBookingById(bookingId);
+        BookingDto booking = bookingService.getBookingById(bookingId);
         if (booking != null) {
             boolean confirmSuccess = paymentService.confirmPayment(booking, paymentConfirmationDetails);
             if (confirmSuccess) {
-                return ResponseEntity.ok("Payment confirmed successfully.");
+                return ResponseEntity.ok("CONFIRMED");
             }
         }
-        return ResponseEntity.status(409).body("Failed to confirm payment.");
+        return ResponseEntity.status(409).body("FAILED");
     }
 }

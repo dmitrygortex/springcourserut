@@ -1,13 +1,14 @@
 package org.example.controllers;
 
-import org.example.entities.Equipment;
-import org.example.entities.Staff;
-import org.example.services.EquipmentService;
-import org.example.services.StaffService;
+import org.example.dto.*;
+import org.example.services.BookingDomainService;
+import org.example.services.StudioDomainService;
+import org.example.services.StudioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -15,77 +16,66 @@ import java.util.List;
 public class StudioController {
 
     @Autowired
-    private EquipmentService equipmentService;
+    StudioService studioService;
 
     @Autowired
-    private StaffService staffService;
+    StudioDomainService studioDomainService;
 
-    @PostMapping("/equipment")
-    public ResponseEntity<String> addEquipment(@RequestBody Equipment equipment) {
-        boolean addSuccess = equipmentService.addEquipment(equipment);
-        if (addSuccess) {
-            return ResponseEntity.ok("Equipment successfully added.");
-        } else {
-            return ResponseEntity.status(409).body("Failed to add equipment.");
-        }
+    @Autowired
+    BookingDomainService bookingDomainService;
+
+    @GetMapping("/findall")
+    public List<StudioDto> getAllStudios(){
+        return studioService.getAllStudio();
     }
 
-    // 2. Удаление оборудования
-    @DeleteMapping("/equipment/{equipmentId}")
-    public ResponseEntity<String> removeEquipment(@PathVariable int equipmentId) {
-        boolean removeSuccess = equipmentService.removeEquipment(equipmentId);
-        if (removeSuccess) {
-            return ResponseEntity.ok("Equipment successfully removed.");
-        } else {
-            return ResponseEntity.status(409).body("Failed to remove equipment.");
-        }
+//    @GetMapping("/findall/{rentfee}")
+//    public List<StudioDto> getAllStudios(@PathVariable int rentfee){
+//        return studioService.getAllStudio();
+//    }
+
+    @GetMapping("/{id}")
+    public StudioDto getStudioById(@PathVariable Integer id){
+        return studioService.getStudioById(id);
+    }
+    @PostMapping("/add")
+    public ResponseEntity<String> addStudio(@RequestBody StudioCreateDto studioCreateDto){
+        return studioService.addStudio(studioCreateDto) ? ResponseEntity.ok("COMPLETED") :
+                ResponseEntity.status(500).body("FAILED");
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteStudio(@PathVariable Integer id){
+        return studioService.removeStudio(id) ? ResponseEntity.ok("COMPLETED") :
+                ResponseEntity.status(500).body("FAILED");
+    }
+//    @PostMapping("/equipment/{equipmentId}/{studioId}")
+//    boolean addEquipmentToStudio(
+//            @PathVariable Integer studioId,
+//            @RequestBody EquipmentCreateDto equipmentCreateDto){
+//        equipmentCreateDto.setStudioDto(studioService.getStudioById(studioId));
+//        studioDomainService.addEquipment(equipmentCreateDto);
+//        return true;
+//    }
+
+    @PostMapping("/equipment/{studioId}")
+    public ResponseEntity<String> addEquipmentToStudio(
+            @PathVariable Integer studioId,
+            @RequestBody EquipmentCreateDto equipmentCreateDto){
+        return studioDomainService.addEquipment(equipmentCreateDto, studioId) ?
+                ResponseEntity.ok("COMPLETED") :
+                ResponseEntity.status(500).body("FAILED");
     }
 
-    // 3. Обновление оборудования
-    @PutMapping("/equipment/{equipmentId}")
-    public ResponseEntity<String> updateEquipment(@PathVariable int equipmentId, @RequestBody Equipment equipment) {
-        equipment.setId(equipmentId);
-        boolean updateSuccess = equipmentService.updateEquipment(equipment);
-        if (updateSuccess) {
-            return ResponseEntity.ok("Equipment successfully updated.");
-        } else {
-            return ResponseEntity.status(409).body("Failed to update equipment.");
-        }
-    }
-
-    // 4. Получение всех оборудования в студии
-    @GetMapping("/equipment")
-    public ResponseEntity<List<Equipment>> getAllEquipment() {
-        List<Equipment> equipmentList = equipmentService.getAllEquipment();
-        return ResponseEntity.ok(equipmentList);
-    }
-
-    // 5. Добавление нового сотрудника
-    @PostMapping("/staff")
-    public ResponseEntity<String> addStaff(@RequestBody Staff staff) {
-        staffService.addStaff(staff);
-        return ResponseEntity.ok("Staff successfully added.");
-    }
-
-    // 6. Удаление сотрудника
-    @DeleteMapping("/staff/{staffId}")
-    public ResponseEntity<String> removeStaff(@PathVariable int staffId) {
-        staffService.removeStaff(staffId);
-        return ResponseEntity.ok("Staff successfully removed.");
-    }
-
-    // 7. Обновление данных сотрудника
-    @PutMapping("/staff/{staffId}")
-    public ResponseEntity<String> updateStaff(@PathVariable int staffId, @RequestBody Staff staff) {
-        staff.setId(staffId);
-        staffService.updateStaff(staff);
-        return ResponseEntity.ok("Staff successfully updated.");
-    }
-
-    // 8. Получение всех сотрудников
-    @GetMapping("/staff")
-    public ResponseEntity<Iterable<Staff>> getAllStaff() {
-        Iterable<Staff> staffList = staffService.getAllStaff();
-        return ResponseEntity.ok(staffList);
+    @PostMapping("/search")
+    public List<StudioSearchDto> search(
+            @RequestParam LocalDateTime startBookingDate,
+            @RequestParam LocalDateTime endBookingDate,
+            @RequestParam(required = false) String address,
+            @RequestParam(required = false) Integer minRentFee,
+            @RequestParam(required = false) Integer maxRentFee,
+            @RequestParam(required = false) String equipmentType
+    ){
+        return bookingDomainService.searchAvailableStudios(startBookingDate, endBookingDate, address,
+                minRentFee, maxRentFee, equipmentType);
     }
 }

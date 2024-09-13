@@ -7,7 +7,7 @@ import org.example.entities.Studio;
 
 import java.time.LocalDateTime;
 
-public class BookingDto {
+public class BookingCreateDto {
     private int id;
     private RentStatus status;
     private LocalDateTime startBookingDate;
@@ -16,9 +16,7 @@ public class BookingDto {
     private ClientDto clientDto;
     private StaffDto staffDto;
 
-
-    public BookingDto(){}
-    public BookingDto(int id, RentStatus status, LocalDateTime startBookingDate,
+    public BookingCreateDto(int id, RentStatus status, LocalDateTime startBookingDate,
                       LocalDateTime endBookingDate, StudioDto studioDto, ClientDto clientDto, StaffDto staffDto) {
         this.id = id;
         this.status = status;

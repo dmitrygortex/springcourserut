@@ -66,7 +66,7 @@ public class BookingRepositoryImpl extends BaseRepositoryImpl<Booking> implement
 
     @Override
     public List<Booking> findBookingsByClientId(Integer clientId) {
-        String queryStr = "SELECT b FROM Booking b WHERE b.client.id = :clientId AND b.isDeleted = false";
+        String queryStr = "SELECT b FROM Booking b WHERE b.client.id = :clientId AND b.deleted = false";
         TypedQuery<Booking> query = entityManager.createQuery(queryStr, Booking.class);
         query.setParameter("clientId", clientId);
         return query.getResultList();
@@ -74,14 +74,14 @@ public class BookingRepositoryImpl extends BaseRepositoryImpl<Booking> implement
 
     @Override
     public List<Booking> findBookingsByStudioId(Integer studioId) {
-        String queryStr = "SELECT b FROM Booking b WHERE b.studio.id = :studioId AND b.isDeleted = false";
+        String queryStr = "SELECT b FROM Booking b WHERE b.studio.id = :studioId AND b.deleted = false";
         TypedQuery<Booking> query = entityManager.createQuery(queryStr, Booking.class);
         query.setParameter("studioId", studioId);
         return query.getResultList();
     }
 
     public Booking findBookingById(Integer id){
-        String queryStr = "SELECT b FROM Booking b WHERE b.id = :id AND b.isDeleted = false";
+        String queryStr = "SELECT b FROM Booking b WHERE b.id = :id AND b.deleted = false";
         TypedQuery<Booking> query = entityManager.createQuery(queryStr, Booking.class);
         query.setParameter("id", id);
         return query.getSingleResult();

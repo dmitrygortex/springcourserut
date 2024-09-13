@@ -1,15 +1,16 @@
 package org.example.dto;
 
-public class StudioDto {
+public class StudioSearchDto {
     private int id;
     private String name;
     private String description;
     private int rentFee;
     private String address;
 
-    public StudioDto() {}
 
-    public StudioDto(int id, String name, String description, int rentFee, String address) {
+    public StudioSearchDto(){}
+
+    public StudioSearchDto(int id, String name, String description, int rentFee, String address) {
         this.id = id;
         this.name = name;
         this.description = description;

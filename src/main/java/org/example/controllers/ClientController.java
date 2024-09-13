@@ -1,9 +1,15 @@
 package org.example.controllers;
 
+import org.example.dto.BookingDto;
+import org.example.dto.ClientDto;
+import org.example.dto.StudioDto;
+import org.example.dto.StudioSearchDto;
 import org.example.entities.Booking;
+import org.example.entities.Client;
 import org.example.entities.Studio;
 import org.example.services.BookingDomainService;
 import org.example.services.BookingService;
+import org.example.services.ClientService;
 import org.example.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,20 +29,21 @@ public class ClientController {
     private BookingService bookingService;
 
     @Autowired
+    private ClientService clientService;
+
+    @Autowired
     private PaymentService paymentService;
 
-    @GetMapping("/studios/search")
-    public ResponseEntity<List<Studio>> searchStudios(
-            @RequestParam LocalDateTime startBookingDate,
-            @RequestParam LocalDateTime endBookingDate,
-            @RequestParam(required = false) String address,
-            @RequestParam(required = false) Integer minRentFee,
-            @RequestParam(required = false) Integer maxRentFee,
-            @RequestParam(required = false) String equipmentType) {
+    @PostMapping("/add")
+    public ResponseEntity<String> addClient(@RequestBody ClientDto clientDto){
+        return clientService.addClient(clientDto) ?
+                ResponseEntity.ok("COMPLETED") :
+                ResponseEntity.status(500).body("FAILED");
+    }
 
-        List<Studio> availableStudios = bookingDomainService.searchAvailableStudios(
-                startBookingDate, endBookingDate, address, minRentFee, maxRentFee, equipmentType);
-        return ResponseEntity.ok(availableStudios);
+    @PostMapping("/find/{id}")
+    public ClientDto findClientById(@PathVariable int id){
+        return clientService.findClientById(id);
     }
 
     @PostMapping("/studios/{studioId}/book")
@@ -48,56 +55,37 @@ public class ClientController {
             @RequestParam LocalDateTime endBookingDate,
             @RequestParam String paymentDetails) {
 
-        boolean bookingSuccess = bookingDomainService.rentStudio(studioId, clientId, staffId, startBookingDate, endBookingDate, paymentDetails);
-        if (bookingSuccess) {
-            return ResponseEntity.ok("Studio successfully booked.");
-        } else {
-            return ResponseEntity.status(409).body("Studio is already booked or not available.");
-        }
+        return bookingDomainService.rentStudio(
+                studioId,
+                clientId,
+                staffId,
+                startBookingDate,
+                endBookingDate,
+                paymentDetails
+        ) ?
+                ResponseEntity.ok("COMPLETED") :
+                ResponseEntity.status(500).body("FAILED");
+
     }
 
-    @GetMapping("/bookings")
-    public ResponseEntity<List<Booking>> getClientBookings(@RequestParam int clientId) {
-        List<Booking> bookings = bookingService.getClientBookings(clientId);
-        return ResponseEntity.ok(bookings);
-    }
 
-    @DeleteMapping("/bookings/{bookingId}/cancel")
-    public ResponseEntity<String> cancelBooking(@PathVariable int bookingId) {
-        boolean cancelSuccess = bookingService.cancel(bookingId);
-        if (cancelSuccess) {
-            return ResponseEntity.ok("Booking successfully canceled.");
-        } else {
-            return ResponseEntity.status(409).body("Failed to cancel the booking.");
-        }
-    }
 
-    @PutMapping("/bookings/{bookingId}/update")
-    public ResponseEntity<String> updateBooking(
-            @PathVariable int bookingId,
-            @RequestParam LocalDateTime newStartDate,
-            @RequestParam LocalDateTime newEndDate) {
 
-        boolean updateSuccess = bookingService.updateBookingDates(bookingId, newStartDate, newEndDate);
-        if (updateSuccess) {
-            return ResponseEntity.ok("Booking dates successfully updated.");
-        } else {
-            return ResponseEntity.status(409).body("Failed to update the booking.");
-        }
-    }
 
-    @PostMapping("/bookings/{bookingId}/add-services")
-    public ResponseEntity<String> addServicesToBooking(
-            @PathVariable int bookingId,
-            @RequestParam String additionalServicesDetails) {
 
-        Booking booking = bookingService.getBookingById(bookingId);
-        if (booking != null) {
-            boolean paymentSuccess = paymentService.processPayment(booking, additionalServicesDetails);
-            if (paymentSuccess) {
-                return ResponseEntity.ok("Additional services added successfully.");
-            }
-        }
-        return ResponseEntity.status(409).body("Failed to add additional services.");
-    }
+
+//    @PostMapping("/bookings/{bookingId}/add-services")
+//    public ResponseEntity<String> addServicesToBooking(
+//            @PathVariable int bookingId,
+//            @RequestParam String additionalServicesDetails) {
+//
+//        BookingDto booking = bookingService.getBookingById(bookingId);
+//        if (booking != null) {
+//            boolean paymentSuccess = paymentService.processPayment(booking, additionalServicesDetails);
+//            if (paymentSuccess) {
+//                return ResponseEntity.ok("COMPLETED");
+//            }
+//        }
+//        return ResponseEntity.status(500).body("FAILED");
+//    }
 }

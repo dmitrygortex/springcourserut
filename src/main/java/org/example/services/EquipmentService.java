@@ -1,12 +1,13 @@
 package org.example.services;
 
+import org.example.dto.EquipmentDto;
 import org.example.entities.Equipment;
 
 import java.util.List;
 
 public interface EquipmentService {
 
-    boolean addEquipment(Equipment equipment);
+    boolean addEquipment(EquipmentDto equipment);
 
     boolean removeEquipment(int equipmentId);
 
@@ -14,11 +15,13 @@ public interface EquipmentService {
 
     boolean updateEquipment(Equipment equipment);
 
-    List<Equipment> getAllEquipment();
+    List<EquipmentDto> getAllEquipment();
 
     Equipment findEquipmentByType(String equipmentType);
 
     List<Equipment> findEquipmentByStudioId(int studioId);
 
     List<Equipment> findEquipmentByBrand(String brand);
+
+
 }

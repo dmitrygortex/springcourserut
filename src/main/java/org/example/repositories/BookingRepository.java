@@ -23,6 +23,7 @@ public interface BookingRepository {
     List<Booking> findBookingsByStudioId(Integer studioId);
 
     Booking findBookingById(Integer id);
+
 }
 
 

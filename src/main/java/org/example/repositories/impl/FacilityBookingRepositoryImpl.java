@@ -17,7 +17,7 @@ public class FacilityBookingRepositoryImpl extends BaseRepositoryImpl<FacilityBo
     @Override
     public List<FacilityBooking> findFacilityBookingsByFacilityId(Integer facilityId) {
         TypedQuery<FacilityBooking> query = entityManager.createQuery(
-                "SELECT fb FROM FacilityBooking fb WHERE fb.facility.id = :facilityId AND fb.isDeleted = false",
+                "SELECT fb FROM FacilityBooking fb WHERE fb.facility.id = :facilityId AND fb.deleted = false",
                 FacilityBooking.class);
         query.setParameter("facilityId", facilityId);
         return query.getResultList();
@@ -26,7 +26,7 @@ public class FacilityBookingRepositoryImpl extends BaseRepositoryImpl<FacilityBo
     @Override
     public List<FacilityBooking> findFacilityBookingsByBookingId(Integer bookingId) {
         TypedQuery<FacilityBooking> query = entityManager.createQuery(
-                "SELECT fb FROM FacilityBooking fb WHERE fb.booking.id = :bookingId AND fb.isDeleted = false",
+                "SELECT fb FROM FacilityBooking fb WHERE fb.booking.id = :bookingId AND fb.deleted = false",
                 FacilityBooking.class);
         query.setParameter("bookingId", bookingId);
         return query.getResultList();
@@ -35,7 +35,7 @@ public class FacilityBookingRepositoryImpl extends BaseRepositoryImpl<FacilityBo
     @Override
     public List<FacilityBooking> findAllFacilityBookings() {
         TypedQuery<FacilityBooking> query = entityManager.createQuery(
-                "SELECT fb FROM FacilityBooking fb WHERE fb.isDeleted = false",
+                "SELECT fb FROM FacilityBooking fb WHERE fb.deleted = false",
                 FacilityBooking.class);
         return query.getResultList();
     }

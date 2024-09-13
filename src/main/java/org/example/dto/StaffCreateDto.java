@@ -2,7 +2,7 @@ package org.example.dto;
 
 import java.time.LocalDate;
 
-public class StaffDto {
+public class StaffCreateDto {
     private int id;
     private String firstName;
     private String lastName;
@@ -10,9 +10,9 @@ public class StaffDto {
     private LocalDate experienceStartDate;
     private int pricePerHour;
 
-    public StaffDto(){}
+    public StaffCreateDto(){}
 
-    public StaffDto(int id, String firstName, String lastName, String role, LocalDate experienceStartDate, int pricePerHour) {
+    public StaffCreateDto(int id, String firstName, String lastName, String role, LocalDate experienceStartDate, int pricePerHour) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

@@ -1,5 +1,6 @@
 package org.example.services;
 
+import org.example.dto.BookingDto;
 import org.example.entities.Booking;
 
 import java.time.LocalDateTime;
@@ -11,11 +12,11 @@ public interface BookingService {
 
     boolean updateBookingDates(Integer bookingId, LocalDateTime newStartDate, LocalDateTime newEndDate);
 
-    List<Booking> getClientBookings(Integer clientId);
+    List<BookingDto> getClientBookings(Integer clientId);
 
-    List<Booking> getStudioBookings(Integer studioId);
+    List<BookingDto> getStudioBookings(Integer studioId);
 
-    Booking getBookingById(Integer bookingId);
+    BookingDto getBookingById(Integer bookingId);
 
 }
 

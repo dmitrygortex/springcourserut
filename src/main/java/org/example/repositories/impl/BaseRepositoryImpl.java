@@ -5,6 +5,7 @@ import jakarta.persistence.PersistenceContext;
 import org.example.entities.BaseEntity;
 import org.example.repositories.BaseRepository;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class BaseRepositoryImpl<T extends BaseEntity> implements BaseRepository<
         this.entityClass = entityClass;
     }
 
+    @Transactional
     public T save(T entity) {
         if (entity.getId() == 0) {
             entityManager.persist(entity);
@@ -37,7 +39,7 @@ public class BaseRepositoryImpl<T extends BaseEntity> implements BaseRepository<
     }
 
 
-
+    @Transactional
     public void softDeleteById(int id) {
         Optional<T> optionalEntity = findById(id);
         if (optionalEntity.isPresent()) {
