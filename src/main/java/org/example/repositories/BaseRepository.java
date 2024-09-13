@@ -1,9 +1,5 @@
 package org.example.repositories;
 
-import org.example.entities.BaseEntity;
-import org.springframework.data.repository.NoRepositoryBean;
-
-import java.util.List;
 import java.util.Optional;
 
 //добавить findAll

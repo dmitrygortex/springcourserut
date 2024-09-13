@@ -45,15 +45,22 @@ public class BookingDomainServiceImpl implements BookingDomainService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<StudioSearchDto> searchAvailableStudios(LocalDateTime startBookingDate, LocalDateTime endBookingDate, String address,
-                                                            Integer minRentFee, Integer maxRentFee, String equipmentType) {
-        return bookingRepository.findAvailableStudios(startBookingDate, endBookingDate, address, minRentFee, maxRentFee, equipmentType).stream().map(studio -> modelMapper.map(studio, StudioSearchDto.class)).collect(Collectors.toList());
+    public List<StudioSearchDto> searchAvailableStudios(LocalDateTime startBookingDate,
+                                                        LocalDateTime endBookingDate,
+                                                        String address,
+                                                        Integer minRentFee,
+                                                        Integer maxRentFee,
+                                                        String equipmentType) {
+        return bookingRepository.findAvailableStudios(startBookingDate,
+                endBookingDate, address, minRentFee, maxRentFee, equipmentType).stream().map(studio ->
+                modelMapper.map(studio, StudioSearchDto.class)).collect(Collectors.toList());
     }
 
 
     @Override
     @Transactional
-    public boolean rentStudio(int studioId, int clientId, int staffId, LocalDateTime newStartDate, LocalDateTime newEndDate, String paymentDetails) {
+    public boolean rentStudio(int studioId, int clientId, int staffId, LocalDateTime newStartDate,
+                              LocalDateTime newEndDate, String paymentDetails) {
         if (bookingRepository.isStudioBooked(studioId, newStartDate, newEndDate)) {
             return false;
         }

@@ -28,7 +28,12 @@ public class BookingRepositoryImpl extends BaseRepositoryImpl<Booking> implement
 
 
     @Override
-    public List<Studio> findAvailableStudios(LocalDateTime startBookingDate, LocalDateTime endBookingDate, String address, Integer minRentFee, Integer maxRentFee, String equipmentType) {
+    public List<Studio> findAvailableStudios(LocalDateTime startBookingDate,
+                                             LocalDateTime endBookingDate,
+                                             String address,
+                                             Integer minRentFee,
+                                             Integer maxRentFee,
+                                             String equipmentType) {
         String queryStr = "SELECT s FROM Studio s " +
                 "LEFT JOIN Booking b ON s.id = b.studio.id " +
                 "WHERE (b.id IS NULL OR b.endBookingDate <= :startBookingDate OR b.startBookingDate >= :endBookingDate) " +

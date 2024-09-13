@@ -2,10 +2,6 @@ package org.example.controllers;
 
 import org.example.dto.BookingCreateDto;
 import org.example.dto.BookingDto;
-import org.example.dto.ClientDto;
-import org.example.dto.StudioSearchDto;
-import org.example.entities.Booking;
-import org.example.entities.Client;
 import org.example.services.BookingDomainService;
 import org.example.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;

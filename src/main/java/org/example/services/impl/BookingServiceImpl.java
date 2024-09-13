@@ -1,12 +1,9 @@
 package org.example.services.impl;
 
 import org.example.dto.BookingDto;
-import org.example.dto.StudioSearchDto;
 import org.example.entities.Booking;
-import org.example.repositories.BookingRepository;
 import org.example.entities.RentStatus;
 import org.example.repositories.impl.BookingRepositoryImpl;
-import org.example.repositories.impl.FacilityBookingRepositoryImpl;
 import org.example.services.BookingService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,18 +54,19 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<BookingDto> getClientBookings(Integer clientId) {
-        return bookingRepository.findBookingsByClientId(clientId).stream().map(booking -> modelMapper.map(booking, BookingDto.class)).collect(Collectors.toList());
+        return bookingRepository.findBookingsByClientId(clientId).stream().map(booking ->
+                modelMapper.map(booking, BookingDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public List<BookingDto> getStudioBookings(Integer studioId) {
-        return bookingRepository.findBookingsByStudioId(studioId).stream().map(booking -> modelMapper.map(booking, BookingDto.class)).collect(Collectors.toList());
+        return bookingRepository.findBookingsByStudioId(studioId).stream().map(booking ->
+                modelMapper.map(booking, BookingDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public BookingDto getBookingById(Integer bookingId) {
         return modelMapper.map(bookingRepository.findBookingById(bookingId), BookingDto.class);
-        //return bookingRepository.findBookingById(bookingId);
     }
 }
 
